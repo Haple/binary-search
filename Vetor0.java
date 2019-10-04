@@ -25,7 +25,7 @@ public class Vetor0 <X extends Comparable<X>>{
 		this.qtd = modelo.qtd;
 		this.vetor = new Object[modelo.vetor.length];
 		for(int i=0; i<this.qtd; i++)
-			this.vetor[i]=meuCloneDeX((X)modelo.vetor[i]);
+			this.vetor[i]=meuCloneDeX(modelo.vetor[i]);
 	}
 
 	public Object clone(){
