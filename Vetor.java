@@ -98,7 +98,11 @@ public class Vetor <X extends Comparable<X>>{
 		return -1;
 	}
 
-	private void buscaBinariaParalela(final int id, final X x, final int inicio, final int fim, final int[] resultado){
+	private void buscaBinariaParalela(final int id, 
+					final X x, 
+					final int inicio, 
+					final int fim, 
+					final int[] resultado){
 		Thread t = new Thread(()->{
 			resultado[id] = buscaBinaria(x,inicio,fim);
 		});
@@ -170,9 +174,7 @@ public class Vetor <X extends Comparable<X>>{
 			}
 		}
 		sortParalelo(posAtual,this.qtd-1);
-		System.out.println("Aguardando as threads terminarem...");
 		esperaFimDasThreads(this.threadsSort);
-		System.out.println("Terminaram. Começando merge dos resultados");
 		posAtual=0;
 		for(int i=0; i<this.numProcessadores-1;i++){
 			mergeParalelo(0,posAtual+tamParte-1,posAtual+tamParte,posAtual+(tamParte*2)-1);
@@ -194,7 +196,6 @@ public class Vetor <X extends Comparable<X>>{
 		});
 		this.threadsSort[this.qtdThreadSort++] = t;
 		t.start();
-		System.out.println("Iniciada thread " + (this.qtdThreadSort));
 	}
 
 	private void mergeParalelo(final int ini1, final int fim1, final int ini2, final int fim2){
