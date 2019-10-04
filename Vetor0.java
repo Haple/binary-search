@@ -79,7 +79,7 @@ public class Vetor0 <X extends Comparable<X>>{
 		}
 	}
 
-	public int busca(X x) throws Exception{
+	public int buscaBinaria(X x) throws Exception{
 		if(x==null)
 			throw new Exception("Item inválido");
 		if(this.qtd==0)
@@ -88,12 +88,12 @@ public class Vetor0 <X extends Comparable<X>>{
 	}
 
 	private int buscaBinaria(X x, int inicio, int fim){
+		if(fim<inicio)
+			return -1;
 		int meio = inicio + (fim-inicio)/2;
 		X itemDoMeio = (X)this.vetor[meio];
 		if(x.equals(itemDoMeio))
 			return meio;
-		if(fim<inicio)
-			return -1;
 		else if(x.compareTo(itemDoMeio) < 0){
 			int primeiroMeio = (inicio+meio)/2;
 			return buscaBinaria(x,inicio,meio-1);

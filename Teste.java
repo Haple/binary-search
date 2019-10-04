@@ -6,19 +6,18 @@ import java.time.temporal.ChronoUnit;
 public class Teste{
 
 	private static int TAMANHO_VETOR = 10;
-	private static int ITEM = 0;
+	private static int ITEM = TAMANHO_VETOR-1;
 
 	public static void main(String[] args){
 		boolean thread = false;
-		if(args.length < 2){
+		if(args.length == 0){
 			System.out.println("Parâmetro 1: números de elementos no vetor de teste");
-			System.out.println("Parâmetro 2: inteiro a ser buscado");
-			System.out.println("Parâmetro 3 (opcional): --thread");
+			System.out.println("Parâmetro 2 (opcional): --thread");
 			return;
 		}
 		TAMANHO_VETOR = Integer.parseInt(args[0]);
-		ITEM = Integer.parseInt(args[1]);
-		if(args.length == 3 && args[2].toLowerCase().equals("--thread")){
+		ITEM = TAMANHO_VETOR-1;
+		if(args.length == 2 && args[1].toLowerCase().equals("--thread")){
 			thread = true;
 		}
 		if(thread)
@@ -38,7 +37,7 @@ public class Teste{
 			vet.mergeSort();
 			System.out.println("Cronometrando a busca binária...");
 			LocalDateTime inicio = LocalDateTime.now();
-			int index = vet.busca(ITEM);
+			int index = vet.buscaBinaria(ITEM);
 			LocalDateTime fim = LocalDateTime.now();
 			System.out.println("Milisegundos: " + ChronoUnit.MILLIS.between(inicio,fim));
 			System.out.println("Posição do item: " + index);
@@ -57,7 +56,7 @@ public class Teste{
 			vet.mergeSort();
 			System.out.println("Cronometrando a busca binária...");
 			LocalDateTime inicio = LocalDateTime.now();
-			int index = vet.busca(ITEM);
+			int index = vet.buscaBinaria(ITEM);
 			LocalDateTime fim = LocalDateTime.now();
 			System.out.println("Milisegundos: " + ChronoUnit.MILLIS.between(inicio,fim));
 			System.out.println("Posição do item: " + index);
