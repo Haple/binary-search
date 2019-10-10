@@ -13,6 +13,7 @@ public class Vetor <X extends Comparable<X>>{
 	private int numProcessadores;
 	private int qtdThreadSort=0;
 	private int qtdThreadMerge=0;
+	private boolean resultadoEncontrado=false;
 
 	private Object[] vetor;
 	private int qtd=0;
@@ -80,6 +81,7 @@ public class Vetor <X extends Comparable<X>>{
 			throw new Exception("Item inválido");
 		if(this.qtd==0)
 			throw new Exception("Vetor vazio");
+		this.resultadoEncontrado=false;
 		final int[] resultado = new int[this.numProcessadores];
 		int tamParte = this.qtd/this.numProcessadores;
 		int posAtual=0;
@@ -112,12 +114,15 @@ public class Vetor <X extends Comparable<X>>{
 	}
 
 	private int buscaBinaria(X x, int inicio, int fim){
+		if(resultadoEncontrado) return -1;
 		if(fim<inicio)
 			return -1;
 		int meio = inicio + (fim-inicio)/2;
 		X itemDoMeio = (X)this.vetor[meio];
-		if(x.equals(itemDoMeio))
+		if(x.equals(itemDoMeio)){
+			resultadoEncontrado = true;
 			return meio;
+		}
 		else if(x.compareTo(itemDoMeio) < 0){
 			int primeiroMeio = (inicio+meio)/2;
 			return buscaBinaria(x,inicio,meio-1);

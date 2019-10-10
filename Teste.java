@@ -1,5 +1,4 @@
 import java.util.Arrays;
-import java.util.Random;
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 
@@ -31,16 +30,15 @@ public class Teste{
 			System.out.println("Vetor com Threads");
 			Vetor<Integer> vet = new Vetor<Integer>(TAMANHO_VETOR);
 			for(int i=0;i<TAMANHO_VETOR;i++){
-				vet.adicione(new Random().nextInt(TAMANHO_VETOR));
+				vet.adicione(i);
 			}
 			System.out.println("Vetor criado com " + TAMANHO_VETOR + " posições");
-			vet.mergeSort();
 			System.out.println("Cronometrando a busca binária...");
 			LocalDateTime inicio = LocalDateTime.now();
 			int index = vet.buscaBinaria(ITEM);
 			LocalDateTime fim = LocalDateTime.now();
 			System.out.println("Milisegundos: " + ChronoUnit.MILLIS.between(inicio,fim));
-			System.out.println("Posição do item: " + index);
+			System.out.println("Posição do item "+ITEM+": " + index);
 		} catch(Exception e){
 			e.printStackTrace();
 		}
@@ -51,16 +49,15 @@ public class Teste{
 			System.out.println("Vetor sem Threads");
 			Vetor0<Integer> vet = new Vetor0<Integer>(TAMANHO_VETOR);
 			for(int i=0;i<TAMANHO_VETOR;i++){
-				vet.adicione(new Random().nextInt(TAMANHO_VETOR));
+				vet.adicione(i);
 			}
-			vet.mergeSort();
+			System.out.println("Vetor criado com " + TAMANHO_VETOR + " posições");
 			System.out.println("Cronometrando a busca binária...");
 			LocalDateTime inicio = LocalDateTime.now();
 			int index = vet.buscaBinaria(ITEM);
 			LocalDateTime fim = LocalDateTime.now();
 			System.out.println("Milisegundos: " + ChronoUnit.MILLIS.between(inicio,fim));
-			System.out.println("Posição do item: " + index);
-			//System.out.println("Vetor: " + vet);
+			System.out.println("Posição do item "+ITEM+": " + index);
 		} catch(Exception e){
 			e.printStackTrace();
 		}
